@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.post.PostMapper">
+
+    <resultMap id="MyResultMap" type="cn.seecoder.courselearning.po.post.PostPO">
+        <id column="post_id" jdbcType="INTEGER" property="postId" />
+        <result column="course_id" jdbcType="INTEGER" property="courseId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="post_title" jdbcType="VARCHAR" property="postTitle" />
+        <result column="post_content" jdbcType="VARCHAR" property="postContent"/>
+        <result column="post_time"  property="postTime"/>
+    </resultMap>
+
+    <insert id="addPost" >
+        <selectKey keyProperty="postId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    insert into post(course_id,user_id,post_title,post_content,post_time)
+    values(#{courseId},#{userId},#{postTitle},#{postContent},#{postTime})
+</insert>
+
+    <update id="updatePost">
+    update post
+    set  post_title=#{postTitle},
+    post_content=#{postContent},
+    post_time=#{postTime}
+    where post_id = #{postId}
+  </update>
+
+    <delete id="deletePost" parameterType="java.lang.Integer">
+    delete from post
+    where post_id = #{postId}
+  </delete>
+
+
+    <select id="selectPostByCourseId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+    select post_id,course_id,user_id,post_title,post_content,post_time
+    from post
+    where course_id=#{courseId}
+    order by post_time desc
+  </select>
+
+    <select id="selectPostByPostId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+    select post_id,course_id,user_id,post_title,post_content,post_time
+    from post
+    where post_id=#{postId}
+  </select>
+
+    <select id="selectPostByUserId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+    select post_id,course_id,user_id,post_title,post_content,post_time
+    from post
+    where user_id=#{userId}
+    order by post_time desc
+  </select>
+
+</mapper>

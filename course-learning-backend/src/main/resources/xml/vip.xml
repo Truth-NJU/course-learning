@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <week>
+        <money>100</money>
+        <time>7</time>
+        <id>1</id>
+    </week>
+    <month>
+        <money>400</money>
+        <time>30</time>
+        <id>2</id>
+    </month>
+    <season>
+        <money>1000</money>
+        <time>90</time>
+        <id>3</id>
+    </season>
+    <year>
+        <money>3600</money>
+        <time>365</time>
+        <id>4</id>
+    </year>
+</config>

@@ -1,0 +1,387 @@
+###
+POST http://localhost:8081/api/course-test/questionCreate
+Content-Type: application/json
+
+{
+  "question": "世界上最帅的人是谁？",
+  "questionAnswer": "助教小哥哥",
+  "questionAnalysis": "帅不需要理由",
+  "courseId": 3,
+  "questionType": "ask"
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": {
+#    "question": "世界上最帅的人是谁？",
+#    "questionId": 16,
+#    "questionAnswer": "助教小哥哥",
+#    "questionAnalysis": "帅不需要理由",
+#    "courseId": 3,
+#    "questionType": "ask",
+#    "isRight": null,
+#    "studentsAnswer": null
+#  }
+#}
+
+POST http://localhost:8081/api/course-test/questionFix
+Content-Type: application/json
+
+{
+  "questionId": 16,
+  "question": "世界上最飒的人是谁？",
+  "questionAnswer": "助教小姐姐",
+  "questionAnalysis": "飒不需要理由",
+  "courseId": 3,
+  "questionType": "ask"
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": {
+#    "question": "世界上最飒的人是谁？",
+#    "questionId": 15,
+#    "questionAnswer": "助教小姐姐",
+#    "questionAnalysis": "飒不需要理由",
+#    "courseId": 3,
+#    "questionType": "ask",
+#    "isRight": null,
+#    "studentsAnswer": null
+#  }
+#}
+#
+
+POST http://localhost:8081/api/course-test/questionDelete
+Content-Type: application/json
+
+{
+  "questionId": 19
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": null
+#}
+
+GET http://localhost:8081/api/course-test/questionGet/course/3
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "question": "世界上最飒的人是谁？",
+#      "questionId": 16,
+#      "questionAnswer": "助教小姐姐",
+#      "questionAnalysis": "飒不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 17,
+#      "questionAnswer": "助教小哥哥",
+#      "questionAnalysis": "帅不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 18,
+#      "questionAnswer": "助教小哥哥",
+#      "questionAnalysis": "帅不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    }
+#  ]
+#}
+#
+POST http://localhost:8081/api/course-test/testCreate
+Content-Type: application/json
+
+{
+  "courseId": 4,
+  "test": "ZZ测试",
+  "startTime": "2021-07-22T20:37:30.000Z",
+  "endTime": "2021-07-30T20:37:30.000Z"
+}
+
+###
+POST http://localhost:8081/api/course-test/testAddQuestion
+Content-Type: application/json
+
+{
+  "testId": 25,
+  "questionIdList": [
+    16,
+    17,
+    18
+  ]
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": null
+#}
+
+GET http://localhost:8081/api/course-test/questionGet/test/21
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "question": "世界上最飒的人是谁？",
+#      "questionId": 16,
+#      "questionAnswer": "助教小姐姐",
+#      "questionAnalysis": "飒不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 17,
+#      "questionAnswer": "助教小哥哥",
+#      "questionAnalysis": "帅不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 18,
+#      "questionAnswer": "助教小哥哥",
+#      "questionAnalysis": "帅不需要理由",
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    }
+#  ]
+#}
+#
+
+GET http://localhost:8081/api/course-test/questionGet/test?testId=24&userId=5
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "question": "世界上最飒的人是谁？",
+#      "questionId": 16,
+#      "questionAnswer": null,
+#      "questionAnalysis": null,
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 17,
+#      "questionAnswer": null,
+#      "questionAnalysis": null,
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    },
+#    {
+#      "question": "世界上最帅的人是谁？",
+#      "questionId": 18,
+#      "questionAnswer": null,
+#      "questionAnalysis": null,
+#      "courseId": 3,
+#      "questionType": "ask",
+#      "isRight": null,
+#      "studentsAnswer": null
+#    }
+#  ]
+#}
+
+POST http://localhost:8081/api/course-test/testDeleteQuestion
+Content-Type: application/json
+
+{
+  "testId": 21,
+  "questionId": 17
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": null
+#}
+
+POST http://localhost:8081/api/course-test/testDelete
+Content-Type: application/json
+
+{
+  "testId": 23
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": null
+#}
+
+GET http://localhost:8081/api/course-test/testGet/teacher/4
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "testId": 24,
+#      "startTime": 1626537600000,
+#      "endTime": 1627228800000,
+#      "courseId": 3,
+#      "testName": "IQ测试",
+#      "testStatus": "toStart",
+#      "isFinished": null,
+#      "score": null
+#    },
+#    {
+#      "testId": 25,
+#      "startTime": 1626710400000,
+#      "endTime": 1627401600000,
+#      "courseId": 3,
+#      "testName": "IQ测试2",
+#      "testStatus": "toStart",
+#      "isFinished": null,
+#      "score": null
+#    },
+#    {
+#      "testId": 26,
+#      "startTime": 1626883200000,
+#      "endTime": 1627574400000,
+#      "courseId": 4,
+#      "testName": "ZZ测试",
+#      "testStatus": "toStart",
+#      "isFinished": null,
+#      "score": null
+#    }
+#  ]
+#}
+#
+
+GET http://localhost:8081/api/course-test/testGet/course/3
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "testId": 24,
+#      "startTime": 1626710400000,
+#      "endTime": 1627401600000,
+#      "courseId": 3,
+#      "testName": "IQ测试",
+#      "testStatus": "toStart",
+#      "isFinished": null,
+#      "score": null
+#    },
+#    {
+#      "testId": 25,
+#      "startTime": 1626883200000,
+#      "endTime": 1627574400000,
+#      "courseId": 3,
+#      "testName": "IQ测试2",
+#      "testStatus": "toStart",
+#      "isFinished": null,
+#      "score": null
+#    }
+#  ]
+#}
+
+POST http://localhost:8081/api/course-test/testAnswerCommit
+Content-Type: application/json
+
+{
+  "testId": 24,
+  "userId": 5,
+  "questionIdAnswers":
+    {
+      "16": "助教小姐姐",
+      "17": "助教小姐姐",
+      "18": "助教小哥哥"
+    }
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": {
+#    "testId": 24,
+#    "score": 66
+#  }
+#}
+#
+
+POST http://localhost:8081/api/course-test/testAnswerCommit
+Content-Type: application/json
+
+{
+"testId": 24,
+"userId": 5,
+"questionIdAnswers":
+{
+"16": "小姐姐",
+"17": "小姐姐",
+"18": "小哥哥"
+}
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": {
+#    "testId": 24,
+#    "score": 0
+#  }
+#}
+#
+
+GET http://localhost:8081/api/course-test/testGet/course?courseId=3&userId=5
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": [
+#    {
+#      "testId": 24,
+#      "startTime": 1626451200000,
+#      "endTime": 1627142400000,
+#      "courseId": 3,
+#      "testName": "IQ测试",
+#      "testStatus": "toStart",
+#      "isFinished": true,
+#      "score": 0
+#    },
+#    {
+#      "testId": 25,
+#      "startTime": 1626624000000,
+#      "endTime": 1627315200000,
+#      "courseId": 3,
+#      "testName": "IQ测试2",
+#      "testStatus": "toStart",
+#      "isFinished": false,
+#      "score": null
+#    }
+#  ]
+#}

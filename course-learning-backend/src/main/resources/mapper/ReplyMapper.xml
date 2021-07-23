@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.post.ReplyMapper">
+
+    <resultMap id="MyResultMap" type="cn.seecoder.courselearning.po.post.ReplyPO">
+        <id column="reply_id" jdbcType="INTEGER" property="replyId"/>
+        <result column="post_id" jdbcType="INTEGER" property="postId"/>
+        <result column="reply_user" jdbcType="INTEGER" property="replyUserId"/>
+        <result column="replied_user" jdbcType="INTEGER" property="repliedUserId"/>
+        <result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+        <result column="replied_id" jdbcType="INTEGER" property="repliedId"/>
+        <result column="reply_time" jdbcType="DATE" property="replyTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <insert id="reply">
+        <selectKey keyProperty="replyId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into reply(post_id,reply_user,replied_user,reply_content,replied_id,reply_time,status)
+        values(#{postId},#{replyUserId},#{repliedUserId},#{replyContent},#{repliedId},#{replyTime},#{status})
+    </insert>
+
+    <insert id="replyReply">
+        insert into reply(post_id, reply_user, replied_user, reply_content, replied_id, reply_time, status)
+        values (#{postId}, #{replyUserId}, #{repliedUserId}, #{replyContent}, #{repliedId}, #{replyTime}, #{status})
+    </insert>
+
+    <update id="updateReply">
+        update reply
+        set reply_content=#{replyContent},
+            reply_time=#{replyTime}
+        where reply_id = #{replyId}
+    </update>
+
+    <update id="updateStatus">
+        update reply
+        set status=1
+        where reply_id = #{replyId}
+    </update>
+
+    <delete id="deleteReply" parameterType="java.lang.Integer">
+        delete
+        from reply
+        where reply_id = #{replyId}
+    </delete>
+
+    <delete id="deleteReplyByPostId" parameterType="java.lang.Integer">
+        delete
+        from reply
+        where post_id = #{postId}
+    </delete>
+
+    <select id="selectReplyByPostId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+        select reply_id,
+               post_id,
+               reply_user,
+               replied_user,
+               reply_content,
+               replied_id,
+               reply_time,
+               status
+        from reply
+        where post_id = #{postId}
+        order by reply_time desc
+    </select>
+
+    <select id="selectReplyByRepliedId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+        select reply_id,
+               post_id,
+               reply_user,
+               replied_user,
+               reply_content,
+               replied_id,
+               reply_time,
+               status
+        from reply
+        where replied_id = #{repliedId}
+        order by reply_time desc
+    </select>
+
+
+    <select id="selectReplyByUserId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+        select reply_id,
+               post_id,
+               reply_user,
+               replied_user,
+               reply_content,
+               replied_id,
+               reply_time,
+               status
+        from reply
+        where reply_user = #{replyUserId}
+        order by reply_time desc
+    </select>
+
+    <select id="selectReplyByReplyId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+        select reply_id,
+               post_id,
+               reply_user,
+               replied_user,
+               reply_content,
+               replied_id,
+               reply_time,
+               status
+        from reply
+        where reply_id = #{replyId}
+    </select>
+
+</mapper>

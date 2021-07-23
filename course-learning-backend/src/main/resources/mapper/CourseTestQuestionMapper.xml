@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.seecoder.courselearning.mapperservice.course.test.CourseTestQuestionMapper">
+    <insert id="addTestQuestion">
+        insert into test_question (test_id,question_id)
+        values
+        <foreach collection="courseTestQuestionPOS" item="courseTestQuestionPO" separator=",">
+            (#{courseTestQuestionPO.testId},#{courseTestQuestionPO.questionId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteTestQuestion" parameterType="java.lang.Integer">
+        delete
+        from test_question
+        where test_id = #{testId}
+          and question_id = #{questionId}
+    </delete>
+
+    <delete id="deleteAllTestQuestion" parameterType="java.lang.Integer">
+        delete
+        from test_question
+        where test_id = #{testId}
+    </delete>
+
+</mapper>

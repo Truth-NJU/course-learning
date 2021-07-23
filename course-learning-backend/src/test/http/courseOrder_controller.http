@@ -1,0 +1,162 @@
+POST http://localhost:8081/api//course_order/create?uid=5&courseId=2
+
+##{
+  "code": 1,
+  "msg": "创建成功",
+  "data": {
+    "id": 7,
+    "origin": 100,
+    "cost": 100,
+    "courseId": 3,
+    "courseName": "道德与人生",
+    "createTime": "2021-07-09 23:20:22",
+    "userId": 5,
+    "status": 2,
+    "endTime": null,
+    "purchaseType": "Buy",
+    "usedCoupons": null
+  }
+}
+
+POST http://localhost:8081/api/course_order/pay/10
+
+###{
+#  "code": 1,
+#  "msg": "付款成功",
+#  "data": null
+#}
+
+GET http://localhost:8081/api/course_order/uid/5
+
+###[
+#  {
+#    "id": 7,
+#    "origin": 100,
+#    "cost": 100,
+#    "courseId": 3,
+#    "courseName": "道德与人生",
+#    "createTime": "2021-07-09 23:20:22",
+#    "userId": 5,
+#    "status": 1,
+#    "endTime": null,
+#    "purchaseType": "Buy",
+#    "usedCoupons": []
+#  },
+#  {
+#    "id": 8,
+#    "origin": 1,
+#    "cost": 1,
+#    "courseId": 1,
+#    "courseName": "软件工程与计算 I",
+#    "createTime": "2021-07-09 23:20:57",
+#    "userId": 5,
+#    "status": 2,
+#    "endTime": null,
+#    "purchaseType": "Buy",
+#    "usedCoupons": []
+#  },
+#  {
+#    "id": 9,
+#    "origin": 1,
+#    "cost": 1,
+#    "courseId": 2,
+#    "courseName": "软件工程与计算 II",
+#    "createTime": "2021-07-09 23:21:00",
+#    "userId": 5,
+#    "status": 2,
+#    "endTime": null,
+#    "purchaseType": "Buy",
+#    "usedCoupons": []
+#  }
+#]
+
+POST http://localhost:8081/api/course_order/rent
+Content-Type: application/json
+
+{
+  "userId": 5,
+  "courseId": 3,
+  "time": 35
+}
+
+###{
+#  "code": 2001,
+#  "msg": "ok",
+#  "data": {
+#    "id": 10,
+#    "origin": null,
+#    "cost": 25,
+#    "courseId": 2,
+#    "courseName": "软件工程与计算 II",
+#    "createTime": "2021-07-09 23:30:53",
+#    "userId": 5,
+#    "status": 2,
+#    "endTime": 1628436653836,
+#    "purchaseType": "Rent",
+#    "usedCoupons": null
+#  }
+#}
+#
+
+GET http://localhost:8081/api/course/sid/5
+
+###[
+#  {
+#    "id": 2,
+#    "name": "软件工程与计算 II",
+#    "type": "中级",
+#    "intro": "基于DevOps培养团队开发中小规模软件系统的能力",
+#    "picture": "course2.png",
+#    "school": "南京大学",
+#    "createTime": "2020-12-20 18:00:00",
+#    "cost": 1,
+#    "teacherId": 1,
+#    "teacherName": "刘钦",
+#    "likes": 0,
+#    "liked": false,
+#    "bought": false,
+#    "manageable": false,
+#    "rented": true,
+#    "rentEndTime": 1633622400000
+#  },
+#  {
+#    "id": 3,
+#    "name": "道德与人生",
+#    "type": "高级",
+#    "intro": "无",
+#    "picture": "course3.png",
+#    "school": "教育部",
+#    "createTime": "2021-07-10 06:28:12",
+#    "cost": 100,
+#    "teacherId": 4,
+#    "teacherName": "桃子",
+#    "likes": 0,
+#    "liked": false,
+#    "bought": true,
+#    "manageable": false,
+#    "rented": false,
+#    "rentEndTime": null
+#  }
+#]
+
+GET http://localhost:8081/api/course/1?uid=5
+
+###{
+#  "id": 1,
+#  "name": "软件工程与计算 I",
+#  "type": "中级",
+#  "intro": "通过Scheme、Python和Java语言，让你分别体会函数式编程范式、结构化编程范式和面向对象编程范式",
+#  "picture": "course1.png",
+#  "school": "南京大学",
+#  "createTime": "2020-12-20 18:00:00",
+#  "cost": 1,
+#  "teacherId": 1,
+#  "teacherName": "刘钦",
+#  "likes": 1,
+#  "liked": true,
+#  "bought": false,
+#  "manageable": false,
+#  "rented": false,
+#  "rentEndTime": 1628784000000
+#}
+#
